@@ -1,3 +1,5 @@
 #!/bin/sh
 
-sh vim/install.sh
+BASEDIR=$(dirname "$0")
+
+sh $BASEDIR/vim/install.sh

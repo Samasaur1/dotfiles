@@ -1,3 +1,5 @@
 #!/bin/sh
 
-sh vim/uninstall.sh
+BASEDIR=$(dirname "$0")
+
+sh $BASEDIR/vim/uninstall.sh
