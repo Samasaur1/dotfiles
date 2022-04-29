@@ -5,3 +5,4 @@ set tabstop=4
 filetype plugin indent on
 set undofile
 set undodir=~/.vim/undo/
+set viminfo+=n~/.vim/viminfo
