@@ -1,0 +1,8 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =6
+let g:netrw_dirhist_6='/Users/sam/Desktop/Files/Stormbreaker_Software/samasaur1.github.io/tags'
+let g:netrw_dirhist_5='/Users/sam/Desktop/Files/School/Reed/cs396/quotes'
+let g:netrw_dirhist_4='/Users/sam/Desktop/Files/Stormbreaker_Software/SwiftIP/.github/workflows'
+let g:netrw_dirhist_3='/Users/sam/Desktop/Files/Stormbreaker_Software/SwiftIP/.github'
+let g:netrw_dirhist_2='/Users/sam/Desktop/Files/School/Reed/cs221/hw9'
+let g:netrw_dirhist_1='/Users/sam/Desktop/RooBot2020/build'
