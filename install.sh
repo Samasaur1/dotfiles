@@ -1,7 +1,3 @@
-#!/usr/bin/sh
+#!/bin/sh
 
-cd ~
-
-# Vim
-ln -s dotfiles/vimrc .vimrc
-ln -s dotfiles/vim .vim
+sh vim/install.sh
