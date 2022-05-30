@@ -5,4 +5,8 @@ set tabstop=4
 filetype plugin indent on
 set undofile
 set undodir=~/.vim/undo/
-set viminfo+=n~/.vim/viminfo
+"This check is probably unneccessary, but it's in here just in case this is
+"auto-sourced by neovim
+if !has('nvim')
+	set viminfo+=n~/.vim/viminfo
+endif
