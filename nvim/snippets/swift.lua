@@ -31,4 +31,16 @@ return {
         i(1),
         t(")\")")
     }),
+    s({
+        trig="guard-sta",
+        name="guard",
+        dscr="Inserts a guard statement",
+    }, {
+        t("guard "),
+        i(1),
+        t({" else {", "\t"}),
+        i(2),
+        t({"", "}", ""}),
+        i(0),
+    }),
 }
