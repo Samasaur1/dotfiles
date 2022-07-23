@@ -54,14 +54,24 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 end
 
-local use = require('packer').use
-require('packer').startup(function()
+-- Packer bootstrapping
+local fn = vim.fn
+local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+if fn.empty(fn.glob(install_path)) > 0 then
+      packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+end
+-- Packer
+require('packer').startup(function(use)
   use 'wbthomason/packer.nvim' -- Package manager
   use 'neovim/nvim-lspconfig' -- Collection of configurations for built-in LSP client
   use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
   use 'hrsh7th/cmp-nvim-lsp' -- LSP source for nvim-cmp
   use 'saadparwaiz1/cmp_luasnip' -- Snippets source for nvim-cmp
   use 'L3MON4D3/LuaSnip' -- Snippets plugin
+
+  if packer_bootstrap then
+    require('packer').sync()
+  end
 end)
 
 -- Add additional capabilities supported by nvim-cmp
