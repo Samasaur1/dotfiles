@@ -2,5 +2,4 @@
 
 cd ~
 
-rm ~/.vimrc
-rm -rf ~/.vim
+rm .misspellings.sh
