@@ -155,3 +155,16 @@ require("luasnip.loaders.from_lua").load({paths = "./snippets"})
 --     nvim_cmp = true, -- if using nvim-cmp, otherwise set to false
 --   }
 -- })
+
+-- setting up spellchecking
+vim.opt.spelllang="en_us"
+-- do NOT set this option. nvim will automatically pick it up correctly, but if you set it manually then you can't add words to your global spellfile
+--vim.opt.spellfile="~/.config/nvim/spell/en.utf-8.add"
+vim.api.nvim_set_keymap("n", "<Leader>s", ":set spell!<CR>", { noremap = true, silent = true })
+--vim.api.nvim_set_keymap("i", "<Leader>s", "<C-O>:set spell!<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<C-l>", "<c-g>u[s1z=`]<c-g>u", { noremap = true })
+vim.api.nvim_set_keymap("i", "<C-l>", "<c-g>u<Esc>[s1z=`]a<c-g>u", { noremap = true })
+-- nnoremap <silent> <F11> :set spell!<cr>
+-- inoremap <silent> <F11> <C-O>:set spell!<cr>
+-- nnoremap <C-l> <c-g>u[s1z=`]<c-g>u
+-- inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
