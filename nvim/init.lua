@@ -68,6 +68,8 @@ require('packer').startup(function(use)
   use 'hrsh7th/cmp-nvim-lsp' -- LSP source for nvim-cmp
   use 'saadparwaiz1/cmp_luasnip' -- Snippets source for nvim-cmp
   use 'L3MON4D3/LuaSnip' -- Snippets plugin
+  use "nvim-lua/plenary.nvim" -- Neovim library for obsidian.nvim
+  use 'epwalsh/obsidian.nvim'
 
   if packer_bootstrap then
     require('packer').sync()
@@ -145,3 +147,11 @@ cmp.setup {
 }
 
 require("luasnip.loaders.from_lua").load({paths = "./snippets"})
+
+  -- waiting for vim.fs in stable
+-- require("obsidian").setup({
+--   dir = "/Users/sam/Library/Mobile Documents/iCloud~md~obsidian/Documents/Rise and Fall of the Roman Republic",
+--   completion = {
+--     nvim_cmp = true, -- if using nvim-cmp, otherwise set to false
+--   }
+-- })
