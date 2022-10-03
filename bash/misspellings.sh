@@ -77,3 +77,6 @@ alias mkae='make'
 
 # nvim
 alias nivm='nvim'
+
+# which
+alias hwich='which'
