@@ -80,3 +80,6 @@ alias nivm='nvim'
 
 # which
 alias hwich='which'
+
+# pandoc
+alias pnadoc='pandoc'
