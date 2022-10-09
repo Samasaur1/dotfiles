@@ -38,6 +38,7 @@ alias congif='config'
 alias reloas='reload'
 alias reaload='reload'
 alias reloasd='reload'
+alias relaod='reload'
 
 # ls
 alias lz='ls'
