@@ -83,3 +83,7 @@ alias hwich='which'
 
 # pandoc
 alias pnadoc='pandoc'
+
+# history
+alias hsitory='history'
+alias histroy='history'
