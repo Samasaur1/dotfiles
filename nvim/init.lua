@@ -167,3 +167,5 @@ vim.api.nvim_set_keymap("i", "<C-l>", "<c-g>u<Esc>[s1z=`]a<c-g>u", { noremap = t
 -- inoremap <silent> <F11> <C-O>:set spell!<cr>
 -- nnoremap <C-l> <c-g>u[s1z=`]<c-g>u
 -- inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
+
+vim.o.mouse=null --nvim 0.8.0 sets mouse=nvi by default, which I don't like.
