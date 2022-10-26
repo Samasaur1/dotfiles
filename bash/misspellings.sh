@@ -88,3 +88,6 @@ alias pnadoc='pandoc'
 # history
 alias hsitory='history'
 alias histroy='history'
+
+# exa
+alias eax='exa'
