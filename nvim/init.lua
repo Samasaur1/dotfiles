@@ -34,8 +34,11 @@ vim.api.nvim_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<C
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
+  --[[
   -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+  -- https://github.com/neovim/nvim-lspconfig/wiki/Autocompletion#nvim-cmp says not to use omnifunc with nvim_cmp
+  --]]
 
   -- Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
