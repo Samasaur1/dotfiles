@@ -110,6 +110,11 @@ luasnip.config.set_config({
 -- nvim-cmp setup
 local cmp = require 'cmp'
 cmp.setup {
+    --[[
+  view = {
+      entries = "native" --can be "custom", "wildmenu", or "native", but custom and native appear to be the same
+  },
+  --]]
   snippet = {
     expand = function(args)
       luasnip.lsp_expand(args.body)
