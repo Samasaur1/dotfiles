@@ -74,6 +74,7 @@ require('packer').startup(function(use)
   use "nvim-lua/plenary.nvim" -- Neovim library for obsidian.nvim
   use 'epwalsh/obsidian.nvim'
   use 'andweeb/presence.nvim' -- Discord rich presense integration
+  --use 'rcarriga/nvim-notify' -- Replace default neovim notifications
 
   if packer_bootstrap then
     require('packer').sync()
@@ -210,3 +211,15 @@ require("presence"):setup({
 })
 
 vim.o.mouse=null --nvim 0.8.0 sets mouse=nvi by default, which I don't like.
+
+--[[
+local nvim_notify = require("notify")
+vim.o.termguicolors=true
+nvim_notify.setup {
+    stages = "fade_in_slide_out",
+    timeout = 3000,
+    background_colour = "#FF8C00",
+    render = "simple",
+}
+vim.notify = nvim_notify
+--]]
