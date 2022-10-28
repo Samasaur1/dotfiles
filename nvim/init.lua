@@ -75,6 +75,8 @@ require('packer').startup(function(use)
   use 'epwalsh/obsidian.nvim'
   use 'andweeb/presence.nvim' -- Discord rich presense integration
   --use 'rcarriga/nvim-notify' -- Replace default neovim notifications
+  use 'p00f/clangd_extensions.nvim'
+  use 'simrat39/rust-tools.nvim'
 
   if packer_bootstrap then
     require('packer').sync()
@@ -87,14 +89,24 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 local lspconfig = require('lspconfig')
 
 -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
---local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver' }
-local servers = { 'sourcekit', 'clangd', 'texlab', 'rust_analyzer', 'pylsp' }
+local servers = { 'sourcekit', 'texlab', 'pylsp' }
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
     on_attach = on_attach,
     capabilities = capabilities,
   }
 end
+-- Enable clangd and rust-analyzer separately since they have plugins which enhance their functionality
+require("clangd_extensions").setup {
+    server = {
+        on_attach = on_attach,
+    },
+}
+require("rust-tools").setup({
+    server = {
+        on_attach = on_attach,
+    },
+})
 
 -- luasnip setup
 local luasnip = require 'luasnip'
