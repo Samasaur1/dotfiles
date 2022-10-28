@@ -24,6 +24,17 @@ vim.o.undofile = true
 --  - https://github.com/nihilistkitten/dotfiles/blob/main/nvim/lua/picker.lua
 --  - https://sbulav.github.io/vim/neovim-setting-up-luasnip/
 
+-- TO ADD:
+-- - https://github.com/hrsh7th/cmp-path
+-- - https://github.com/nvim-tree/nvim-web-devicons
+-- - https://github.com/folke/trouble.nvim
+-- - https://github.com/nvim-treesitter/nvim-treesitter
+-- - https://github.com/nvim-tree/nvim-web-devicons
+-- - https://github.com/numToStr/Comment.nvim
+
+-- To customize:
+-- - https://github.com/nvim-telescope/telescope.nvim
+
 local opts = { noremap = true, silent = true }
 vim.api.nvim_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
 vim.api.nvim_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
@@ -75,6 +86,10 @@ require('packer').startup(function(use)
   use 'epwalsh/obsidian.nvim'
   use 'andweeb/presence.nvim' -- Discord rich presense integration
   --use 'rcarriga/nvim-notify' -- Replace default neovim notifications
+  use {
+      'nvim-telescope/telescope.nvim', branch = '0.1.x',
+      requires = { {'nvim-lua/plenary.nvim'} }
+  }
   use 'p00f/clangd_extensions.nvim'
   use 'simrat39/rust-tools.nvim'
 
@@ -225,6 +240,7 @@ require("presence"):setup({
 vim.o.mouse=null --nvim 0.8.0 sets mouse=nvi by default, which I don't like.
 
 --[[
+-- https://github.com/neovim/nvim-lspconfig/wiki/User-contributed-tips#use-nvim-notify-to-display-lsp-messages
 local nvim_notify = require("notify")
 vim.o.termguicolors=true
 nvim_notify.setup {
@@ -235,3 +251,9 @@ nvim_notify.setup {
 }
 vim.notify = nvim_notify
 --]]
+
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
+vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
+vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
