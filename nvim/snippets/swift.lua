@@ -58,7 +58,7 @@ return {
             --          -- In this case only the first line is inserted.
             return snip.env.TM_SELECTED_TEXT[1] or {}
         end, {}),
-        t('"=\\('),
+        t('=\\('),
         f(function(_, snip)
             -- TM_SELECTED_TEXT is a table to account for multiline-selections.
             --          -- In this case only the first line is inserted.
@@ -91,5 +91,21 @@ return {
             return snip.env.TM_SELECTED_TEXT[1] or {}
         end, {}),
         t(')')
+    }),
+    require("luasnip.extras.postfix").postfix(".if", {
+        t("if "),
+        l(l.POSTFIX_MATCH),
+        t({" {", "\t"}),
+        i(1),
+        t({"", "}", ""}),
+        i(0)
+    }),
+    require("luasnip.extras.postfix").postfix(".printv", {
+        t("print(\""),
+        l(l.POSTFIX_MATCH),
+        t("=\\("),
+        l(l.POSTFIX_MATCH),
+        t(")\")"),
+        i(0)
     }),
 }
