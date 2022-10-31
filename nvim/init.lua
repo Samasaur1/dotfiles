@@ -92,6 +92,15 @@ require('packer').startup(function(use)
   }
   use 'p00f/clangd_extensions.nvim'
   use 'simrat39/rust-tools.nvim'
+  use({
+    "kylechui/nvim-surround",
+    tag = "*", -- Use for stability; omit to use `main` branch for the latest features
+    config = function()
+        require("nvim-surround").setup({
+            -- Configuration here, or leave empty to use defaults
+        })
+    end
+  })
 
   if packer_bootstrap then
     require('packer').sync()
