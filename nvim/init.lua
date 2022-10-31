@@ -72,7 +72,7 @@ end
 local fn = vim.fn
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
-      packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+  packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
 end
 -- Packer
 require('packer').startup(function(use)
@@ -87,8 +87,8 @@ require('packer').startup(function(use)
   use 'andweeb/presence.nvim' -- Discord rich presense integration
   --use 'rcarriga/nvim-notify' -- Replace default neovim notifications
   use {
-      'nvim-telescope/telescope.nvim', branch = '0.1.x',
-      requires = { {'nvim-lua/plenary.nvim'} }
+    'nvim-telescope/telescope.nvim', branch = '0.1.x',
+    requires = { {'nvim-lua/plenary.nvim'} }
   }
   use 'p00f/clangd_extensions.nvim'
   use 'simrat39/rust-tools.nvim'
@@ -96,9 +96,9 @@ require('packer').startup(function(use)
     "kylechui/nvim-surround",
     tag = "*", -- Use for stability; omit to use `main` branch for the latest features
     config = function()
-        require("nvim-surround").setup({
-            -- Configuration here, or leave empty to use defaults
-        })
+      require("nvim-surround").setup({
+        -- Configuration here, or leave empty to use defaults
+      })
     end
   })
 
@@ -125,14 +125,14 @@ for _, lsp in ipairs(servers) do
 end
 -- Enable clangd and rust-analyzer separately since they have plugins which enhance their functionality
 require("clangd_extensions").setup {
-    server = {
-        on_attach = on_attach,
-    },
+  server = {
+    on_attach = on_attach,
+  },
 }
 require("rust-tools").setup({
-    server = {
-        on_attach = on_attach,
-    },
+  server = {
+    on_attach = on_attach,
+  },
 })
 
 -- luasnip setup
@@ -143,16 +143,16 @@ vim.api.nvim_set_keymap("s", "<c-j>", "<cmd>lua require'luasnip'.jump(1)<CR>", o
 vim.api.nvim_set_keymap("i", "<c-k>", "<cmd>lua require'luasnip'.jump(-1)<CR>", opts)
 vim.api.nvim_set_keymap("s", "<c-k>", "<cmd>lua require'luasnip'.jump(-1)<CR>", opts)
 luasnip.config.set_config({
-    store_selection_keys="<Tab>", --Use 'viw' to enter 'v'isual mode and select the 'i'nner 'w'ord (the current word without spaces before or after), then hit '<Tab>' (or whatever I now have the key set to). this will remove the selection, allowing you to use `snip.env.TM_SELECTED_TEXT` to get in in a snippet (see the markdown link snippet)
+  store_selection_keys="<Tab>", --Use 'viw' to enter 'v'isual mode and select the 'i'nner 'w'ord (the current word without spaces before or after), then hit '<Tab>' (or whatever I now have the key set to). this will remove the selection, allowing you to use `snip.env.TM_SELECTED_TEXT` to get in in a snippet (see the markdown link snippet)
 })
 
 
 -- nvim-cmp setup
 local cmp = require 'cmp'
 cmp.setup {
-    --[[
+  --[[
   view = {
-      entries = "native" --can be "custom", "wildmenu", or "native", but custom and native appear to be the same
+    entries = "native" --can be "custom", "wildmenu", or "native", but custom and native appear to be the same
   },
   --]]
   snippet = {
@@ -196,7 +196,6 @@ cmp.setup {
 
 require("luasnip.loaders.from_lua").load({paths = "./snippets"})
 
-  -- waiting for vim.fs in stable
 -- require("obsidian").setup({
 --   dir = "/Users/sam/Library/Mobile Documents/iCloud~md~obsidian/Documents/Rise and Fall of the Roman Republic",
 --   completion = {
@@ -220,33 +219,33 @@ vim.api.nvim_set_keymap("i", "<C-l>", "<c-g>u<Esc>[s1z=`]a<c-g>u", { noremap = t
 --[[
 -- The setup config table shows all available config options with their default values:
 require("presence"):setup({
-    -- General options
-    auto_update         = true,                       -- Update activity based on autocmd events (if `false`, map or manually execute `:lua package.loaded.presence:update()`)
-    neovim_image_text   = "The One True Text Editor", -- Text displayed when hovered over the Neovim image
-    main_image          = "neovim",                   -- Main image display (either "neovim" or "file")
-    client_id           = "793271441293967371",       -- Use your own Discord application client id (not recommended)
-    log_level           = nil,                        -- Log messages at or above this level (one of the following: "debug", "info", "warn", "error")
-    debounce_timeout    = 10,                         -- Number of seconds to debounce events (or calls to `:lua package.loaded.presence:update(<filename>, true)`)
-    enable_line_number  = false,                      -- Displays the current line number instead of the current project
-    blacklist           = {},                         -- A list of strings or Lua patterns that disable Rich Presence if the current file name, path, or workspace matches
-    buttons             = true,                       -- Configure Rich Presence button(s), either a boolean to enable/disable, a static table (`{{ label = "<label>", url = "<url>" }, ...}`, or a function(buffer: string, repo_url: string|nil): table)
-    file_assets         = {},                         -- Custom file asset definitions keyed by file names and extensions (see default config at `lua/presence/file_assets.lua` for reference)
-    show_time           = true,                       -- Show the timer
+  -- General options
+  auto_update         = true,                       -- Update activity based on autocmd events (if `false`, map or manually execute `:lua package.loaded.presence:update()`)
+  neovim_image_text   = "The One True Text Editor", -- Text displayed when hovered over the Neovim image
+  main_image          = "neovim",                   -- Main image display (either "neovim" or "file")
+  client_id           = "793271441293967371",       -- Use your own Discord application client id (not recommended)
+  log_level           = nil,                        -- Log messages at or above this level (one of the following: "debug", "info", "warn", "error")
+  debounce_timeout    = 10,                         -- Number of seconds to debounce events (or calls to `:lua package.loaded.presence:update(<filename>, true)`)
+  enable_line_number  = false,                      -- Displays the current line number instead of the current project
+  blacklist           = {},                         -- A list of strings or Lua patterns that disable Rich Presence if the current file name, path, or workspace matches
+  buttons             = true,                       -- Configure Rich Presence button(s), either a boolean to enable/disable, a static table (`{{ label = "<label>", url = "<url>" }, ...}`, or a function(buffer: string, repo_url: string|nil): table)
+  file_assets         = {},                         -- Custom file asset definitions keyed by file names and extensions (see default config at `lua/presence/file_assets.lua` for reference)
+  show_time           = true,                       -- Show the timer
 
-    -- Rich Presence text options
-    editing_text        = "Editing %s",               -- Format string rendered when an editable file is loaded in the buffer (either string or function(filename: string): string)
-    file_explorer_text  = "Browsing %s",              -- Format string rendered when browsing a file explorer (either string or function(file_explorer_name: string): string)
-    git_commit_text     = "Committing changes",       -- Format string rendered when committing changes in git (either string or function(filename: string): string)
-    plugin_manager_text = "Managing plugins",         -- Format string rendered when managing plugins (either string or function(plugin_manager_name: string): string)
-    reading_text        = "Reading %s",               -- Format string rendered when a read-only or unmodifiable file is loaded in the buffer (either string or function(filename: string): string)
-    workspace_text      = "Working on %s",            -- Format string rendered when in a git repository (either string or function(project_name: string|nil, filename: string): string)
-    line_number_text    = "Line %s out of %s",        -- Format string rendered when `enable_line_number` is set to true (either string or function(line_number: number, line_count: number): string)
+  -- Rich Presence text options
+  editing_text        = "Editing %s",               -- Format string rendered when an editable file is loaded in the buffer (either string or function(filename: string): string)
+  file_explorer_text  = "Browsing %s",              -- Format string rendered when browsing a file explorer (either string or function(file_explorer_name: string): string)
+  git_commit_text     = "Committing changes",       -- Format string rendered when committing changes in git (either string or function(filename: string): string)
+  plugin_manager_text = "Managing plugins",         -- Format string rendered when managing plugins (either string or function(plugin_manager_name: string): string)
+  reading_text        = "Reading %s",               -- Format string rendered when a read-only or unmodifiable file is loaded in the buffer (either string or function(filename: string): string)
+  workspace_text      = "Working on %s",            -- Format string rendered when in a git repository (either string or function(project_name: string|nil, filename: string): string)
+  line_number_text    = "Line %s out of %s",        -- Format string rendered when `enable_line_number` is set to true (either string or function(line_number: number, line_count: number): string)
 })
 --]]
 require("presence"):setup({
-    main_image = "file",
-    neovim_image_text = "nvim",
-    --file_assets = { lua = { "the sam", "https://en.gravatar.com/userimage/141800648/e121fccade1465222317926274057fa3.jpeg" } }
+  main_image = "file",
+  neovim_image_text = "nvim",
+  --file_assets = { lua = { "the sam", "https://en.gravatar.com/userimage/141800648/e121fccade1465222317926274057fa3.jpeg" } }
 })
 
 vim.o.mouse=null --nvim 0.8.0 sets mouse=nvi by default, which I don't like.
@@ -256,10 +255,10 @@ vim.o.mouse=null --nvim 0.8.0 sets mouse=nvi by default, which I don't like.
 local nvim_notify = require("notify")
 vim.o.termguicolors=true
 nvim_notify.setup {
-    stages = "fade_in_slide_out",
-    timeout = 3000,
-    background_colour = "#FF8C00",
-    render = "simple",
+  stages = "fade_in_slide_out",
+  timeout = 3000,
+  background_colour = "#FF8C00",
+  render = "simple",
 }
 vim.notify = nvim_notify
 --]]
