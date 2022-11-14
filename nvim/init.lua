@@ -6,6 +6,8 @@ vim.o.smarttab = true
 vim.o.number = true
 vim.o.undofile = true
 
+local truecolor = os.getenv("COLORTERM")
+
 -- References:
 --  - https://github.com/neovim/nvim-lspconfig#suggested-configuration
 --  - https://github.com/neovim/nvim-lspconfig/wiki/Autocompletion#nvim-cmp
@@ -121,6 +123,7 @@ require('packer').startup(function(use)
       }
     end
   }
+  if truecolor then
   use({
     "folke/noice.nvim",
     config = function()
@@ -147,6 +150,7 @@ require('packer').startup(function(use)
     end
   }
   use { "catppuccin/nvim", as = "catppuccin" }
+  end
 
   if packer_bootstrap then
     require('packer').sync()
@@ -296,6 +300,7 @@ require("presence"):setup({
 
 vim.o.mouse=null --nvim 0.8.0 sets mouse=nvi by default, which I don't like.
 
+if truecolor then
 -- https://github.com/neovim/nvim-lspconfig/wiki/User-contributed-tips#use-nvim-notify-to-display-lsp-messages
 local nvim_notify = require("notify")
 vim.o.termguicolors=true
@@ -306,6 +311,7 @@ nvim_notify.setup {
   render = "simple",
 }
 -- vim.notify = nvim_notify
+end
 
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
@@ -375,6 +381,7 @@ vim.api.nvim_create_autocmd({'BufEnter','BufAdd','BufNew','BufNewFile','BufWinEn
 ---ENDWORKAROUND
 vim.o.foldlevelstart=99
 
+if truecolor then
 require("catppuccin").setup({
   flavour = "mocha", -- latte, frappe, macchiato, mocha
   background = { -- :h background
@@ -407,3 +414,4 @@ require("catppuccin").setup({
   },
 })
 vim.cmd.colorscheme "catppuccin"
+end
