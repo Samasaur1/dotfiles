@@ -110,7 +110,7 @@ require('packer').startup(function(use)
   use {
     'numToStr/Comment.nvim',
     config = function()
-        require('Comment').setup()
+      require('Comment').setup()
     end
   }
   use {
@@ -124,32 +124,32 @@ require('packer').startup(function(use)
     end
   }
   if truecolor then
-  use({
-    "folke/noice.nvim",
-    config = function()
-      require("noice").setup()
-    end,
-    requires = {
-      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-      "MunifTanjim/nui.nvim",
-      -- OPTIONAL:
-      --   `nvim-notify` is only needed, if you want to use the notification view.
-      --   If not available, we use `mini` as the fallback
-      "rcarriga/nvim-notify",
+    use({
+      "folke/noice.nvim",
+      config = function()
+        require("noice").setup()
+      end,
+      requires = {
+        -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+        "MunifTanjim/nui.nvim",
+        -- OPTIONAL:
+        --   `nvim-notify` is only needed, if you want to use the notification view.
+        --   If not available, we use `mini` as the fallback
+        "rcarriga/nvim-notify",
       }
-  })
-  use {
-    "folke/trouble.nvim",
-    requires = "kyazdani42/nvim-web-devicons",
-    config = function()
-      require("trouble").setup {
-        -- your configuration comes here
-        -- or leave it empty to use the default settings
-        -- refer to the configuration section below
-      }
-    end
-  }
-  use { "catppuccin/nvim", as = "catppuccin" }
+    })
+    use {
+      "folke/trouble.nvim",
+      requires = "kyazdani42/nvim-web-devicons",
+      config = function()
+        require("trouble").setup {
+          -- your configuration comes here
+          -- or leave it empty to use the default settings
+          -- refer to the configuration section below
+        }
+      end
+    }
+    use { "catppuccin/nvim", as = "catppuccin" }
   end
 
   if packer_bootstrap then
@@ -301,16 +301,16 @@ require("presence"):setup({
 vim.o.mouse=null --nvim 0.8.0 sets mouse=nvi by default, which I don't like.
 
 if truecolor then
--- https://github.com/neovim/nvim-lspconfig/wiki/User-contributed-tips#use-nvim-notify-to-display-lsp-messages
-local nvim_notify = require("notify")
-vim.o.termguicolors=true
-nvim_notify.setup {
-  stages = "slide",
-  timeout = 3000,
-  background_colour = "#FF8C00",
-  render = "simple",
-}
--- vim.notify = nvim_notify
+  -- https://github.com/neovim/nvim-lspconfig/wiki/User-contributed-tips#use-nvim-notify-to-display-lsp-messages
+  local nvim_notify = require("notify")
+  vim.o.termguicolors=true
+  nvim_notify.setup {
+    stages = "slide",
+    timeout = 3000,
+    background_colour = "#FF8C00",
+    render = "simple",
+  }
+  -- vim.notify = nvim_notify
 end
 
 local builtin = require('telescope.builtin')
@@ -382,36 +382,36 @@ vim.api.nvim_create_autocmd({'BufEnter','BufAdd','BufNew','BufNewFile','BufWinEn
 vim.o.foldlevelstart=99
 
 if truecolor then
-require("catppuccin").setup({
-  flavour = "mocha", -- latte, frappe, macchiato, mocha
-  background = { -- :h background
-    light = "latte",
-    dark = "mocha",
-  },
-  integrations = {
-    cmp = true,
-    notify = true,
-    telescope = true,
-    treesitter = true,
-    lsp_trouble = true,
-    which_key = true,
+  require("catppuccin").setup({
+    flavour = "mocha", -- latte, frappe, macchiato, mocha
+    background = { -- :h background
+      light = "latte",
+      dark = "mocha",
+    },
+    integrations = {
+      cmp = true,
+      notify = true,
+      telescope = true,
+      treesitter = true,
+      lsp_trouble = true,
+      which_key = true,
 
-    native_lsp = {
-      enabled = true,
-      virtual_text = {
-        errors = { "italic" },
-        hints = { "italic" },
-        warnings = { "italic" },
-        information = { "italic" },
-      },
-      underlines = {
-        errors = { "underline" },
-        hints = { "underline" },
-        warnings = { "underline" },
-        information = { "underline" },
+      native_lsp = {
+        enabled = true,
+        virtual_text = {
+          errors = { "italic" },
+          hints = { "italic" },
+          warnings = { "italic" },
+          information = { "italic" },
+        },
+        underlines = {
+          errors = { "underline" },
+          hints = { "underline" },
+          warnings = { "underline" },
+          information = { "underline" },
+        },
       },
     },
-  },
-})
-vim.cmd.colorscheme "catppuccin"
+  })
+  vim.cmd.colorscheme "catppuccin"
 end
