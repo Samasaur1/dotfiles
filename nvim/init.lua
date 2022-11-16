@@ -151,6 +151,10 @@ require('packer').startup(function(use)
     }
     use { "catppuccin/nvim", as = "catppuccin" }
   end
+    use {
+      'nvim-lualine/lualine.nvim',
+      requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+    }
 
   if packer_bootstrap then
     require('packer').sync()
@@ -414,4 +418,83 @@ if truecolor then
     },
   })
   vim.cmd.colorscheme "catppuccin"
+
+end
+if truecolor then
+  -- This is the default config, with the exception of the theme and the encoding/fileformat
+  require('lualine').setup {
+    options = {
+      theme = "catppuccin"
+    },
+    sections = {
+      lualine_a = {'mode'},
+      lualine_b = {'branch', 'diff', 'diagnostics'},
+      lualine_c = {'filename'},
+      lualine_x = {
+        -- my custom encoding: show encoding unless UTF-8
+        function()
+          local ret, _ = (vim.bo.fenc or vim.go.enc):gsub("^utf%-8$", "")
+          return ret
+        end,
+        -- configure fileformat to a) use text instead of symbols; b) don't show LF
+        {
+          'fileformat',
+          symbols = {
+            unix = '',
+            dos = 'CRLF',
+            mac = 'CR',
+          }
+        },
+        'filetype'
+      },
+      -- lualine_x = {'encoding', 'fileformat', 'filetype'},
+      lualine_y = {'progress'},
+      lualine_z = {'location'}
+    },
+    inactive_sections = {
+      lualine_a = {},
+      lualine_b = {},
+      lualine_c = {'filename'},
+      lualine_x = {'location'},
+      lualine_y = {},
+      lualine_z = {}
+    },
+  }
+else
+  -- This is the default config, with the exception of the encoding/fileformat
+  require("lualine").setup {
+    sections = {
+      lualine_a = {'mode'},
+      lualine_b = {'branch', 'diff', 'diagnostics'},
+      lualine_c = {'filename'},
+      lualine_x = {
+        -- my custom encoding: show encoding unless UTF-8
+        function()
+          local ret, _ = (vim.bo.fenc or vim.go.enc):gsub("^utf%-8$", "")
+          return ret
+        end,
+        -- configure fileformat to a) use text instead of symbols; b) don't show LF
+        {
+          'fileformat',
+          symbols = {
+            unix = '',
+            dos = 'CRLF',
+            mac = 'CR',
+          }
+        },
+        'filetype'
+      },
+      -- lualine_x = {'encoding', 'fileformat', 'filetype'},
+      lualine_y = {'progress'},
+      lualine_z = {'location'}
+    },
+    inactive_sections = {
+      lualine_a = {},
+      lualine_b = {},
+      lualine_c = {'filename'},
+      lualine_x = {'location'},
+      lualine_y = {},
+      lualine_z = {}
+    },
+  }
 end
