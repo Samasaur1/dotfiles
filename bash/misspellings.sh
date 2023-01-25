@@ -91,3 +91,9 @@ alias histroy='history'
 
 # exa
 alias eax='exa'
+
+# cargo
+alias cagro='cargo'
+
+# pbcopy
+alias bpcopy='pbcopy'
