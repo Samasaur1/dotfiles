@@ -498,3 +498,4 @@ else
     },
   }
 end
+require("user.darkmode")
