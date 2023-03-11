@@ -43,4 +43,20 @@ return {
         t("_"),
         i(0),
     }),
+    s({
+        trig="link_title",
+        name="markdown_link_title",
+        dscr="Add link to selected Markdown text",
+    }, {
+        t("["),
+        f(function(_, snip)
+            -- TM_SELECTED_TEXT is a table to account for multiline-selections.
+            --          -- In this case only the first line is inserted.
+            return snip.env.TM_SELECTED_TEXT[1] or {}
+        end, {}),
+        t("]("),
+        i(1),
+        t(")"),
+        i(0),
+    }),
 }

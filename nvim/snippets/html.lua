@@ -43,4 +43,20 @@ return {
         t("</em>"),
         i(0),
     }),
+    s({
+        trig="link_title",
+        name="html_link_title",
+        dscr="Add link to selected HTML text",
+    }, {
+        t('<a href="'),
+        i(1),
+        t('">'),
+        f(function(_, snip)
+            -- TM_SELECTED_TEXT is a table to account for multiline-selections.
+            --          -- In this case only the first line is inserted.
+            return snip.env.TM_SELECTED_TEXT[1] or {}
+        end, {}),
+        t("</a>"),
+        i(0),
+    }),
 }
