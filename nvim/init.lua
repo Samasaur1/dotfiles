@@ -257,6 +257,7 @@ require("luasnip.loaders.from_lua").load({paths = "./snippets"})
 --   }
 -- })
 
+vim.opt.spell = true
 -- setting up spellchecking
 vim.opt.spelllang="en_us"
 -- do NOT set this option. nvim will automatically pick it up correctly, but if you set it manually then you can't add words to your global spellfile
