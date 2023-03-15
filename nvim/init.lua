@@ -500,3 +500,6 @@ else
   }
 end
 require("user.darkmode")
+
+vim.api.nvim_buf_set_keymap(0, 'x', '<leader>ee', ":!age -a -r age1f79utp8h7hw9gymhv46hy5ffprlvshpxyt559262z467vc3qg36sucxzdk<CR>", opts)
+vim.api.nvim_buf_set_keymap(0, 'x', '<leader>ed', ":!age -d -i ~/.age/key.txt<CR>", opts)
