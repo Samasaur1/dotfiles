@@ -1,3 +1,10 @@
+function selected_text_exists()
+  local ok, val = pcall(vim.api.nvim_buf_get_var, 0, "LUASNIP_SELECT_RAW");
+  return ok;
+end
+function no_selected_text()
+  return not selected_text_exists()
+end
 return {
     s({
         trig="bold",
