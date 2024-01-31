@@ -68,6 +68,22 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+
+  -- code lens 
+  -- (taken from https://discuss.ocaml.org/t/neovim-setup-in-lua-for-ocaml/10586)
+  if client.resolved_capabilities.code_lens then
+    local codelens = vim.api.nvim_create_augroup(
+      'LSPCodeLens',
+      { clear = true }
+    )
+    vim.api.nvim_create_autocmd({ 'BufEnter', 'InsertLeave', 'CursorHold' }, {
+      group = codelens,
+      callback = function()
+        vim.lsp.codelens.refresh()
+      end,
+      buffer = bufnr,
+    })
+  end
 end
 
 vim.loader.enable()
@@ -169,7 +185,7 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 local lspconfig = require('lspconfig')
 
 -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
-local servers = { 'sourcekit', 'texlab', 'pylsp', 'lua_ls', 'bashls', 'html' }
+local servers = { 'sourcekit', 'texlab', 'pylsp', 'lua_ls', 'bashls', 'html', 'ocamllsp', 'nil_ls' }
 -- The HTML server says you should do
 -- capabilities.textDocument.completion.completionItem.snippetSupport = true
 -- but it is covered by default_capabilities(), so I don't
@@ -505,3 +521,16 @@ require("user.darkmode")
 
 vim.api.nvim_buf_set_keymap(0, 'x', '<leader>ee', ":!age -a -r age1f79utp8h7hw9gymhv46hy5ffprlvshpxyt559262z467vc3qg36sucxzdk<CR>", opts)
 vim.api.nvim_buf_set_keymap(0, 'x', '<leader>ed', ":!age -d -i ~/.age/key.txt<CR>", opts)
+
+-- local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
+-- parser_config.liquid = {
+--   install_info = {
+--     url = "https://github.com/Shopify/tree-sitter-liquid", -- local path or git repo
+--     files = {"src/parser.c"}, -- note that some parsers also require src/scanner.c or src/scanner.cc
+--     -- optional entries:
+--     branch = "main", -- default branch in case of git repo if different from master
+--     generate_requires_npm = false, -- if stand-alone parser without npm dependencies
+--     requires_generate_from_grammar = false, -- if folder contains pre-generated src/parser.c
+--   },
+--   -- filetype = "zu", -- if filetype does not match the parser name
+-- }
